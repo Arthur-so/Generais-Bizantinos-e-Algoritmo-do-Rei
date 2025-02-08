@@ -164,17 +164,11 @@ int main(int argc, char** argv) {
     };
     int numCenarios = sizeof(cenarios) / sizeof(Cenario);
 
-    if (rank == 0) {
-        printf("=== Algoritmo do Rei ===\n");
-        printf("=== Executando %d cenários em sequência ===\n", numCenarios);
-        printf("    (Use 'mpirun -np 5 ./algoritmo_rei_simulacoes', por exemplo.)\n\n");
-    }
-
     for (int i = 0; i < numCenarios; i++) {
         MPI_Barrier(MPI_COMM_WORLD);
 
         if (rank == 0) {
-            printf("\n--- Iniciando Cenário %d ---\n", i+1);
+            printf("\nIniciando Cenário %d\n", i+1);
         }
         MPI_Barrier(MPI_COMM_WORLD);
 
@@ -182,12 +176,12 @@ int main(int argc, char** argv) {
 
         MPI_Barrier(MPI_COMM_WORLD);
         if (rank == 0) {
-            printf("--- Fim do Cenário %d ---\n\n", i+1);
+            printf("Fim do Cenário %d\n", i+1);
         }
     }
 
     if (rank == 0) {
-        printf("=== Fim de todas as simulações (Algoritmo do Rei) ===\n");
+        printf("Fim de todas as simulações (Algoritmo do Rei)\n");
     }
 
     MPI_Finalize();
